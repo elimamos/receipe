@@ -70,6 +70,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="IngredientParser.cs" />
+    <Compile Include="IngredientSearcher.cs" />
     <Compile Include="RecipeEditor.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

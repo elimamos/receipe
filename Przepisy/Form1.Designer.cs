@@ -33,17 +33,22 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.howToDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recipeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.recipeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recipeTableAdapter = new Przepisy.dbDataSetTableAdapters.RecipeTableAdapter();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ingredientTableAdapter = new Przepisy.dbDataSetTableAdapters.IngredientTableAdapter();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ingredientTableAdapter = new Przepisy.dbDataSetTableAdapters.IngredientTableAdapter();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.iDingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDrecipeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thingsUneedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.thingsUneedTableAdapter = new Przepisy.dbDataSetTableAdapters.ThingsUneedTableAdapter();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.howToDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -51,6 +56,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.recipeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thingsUneedBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dbDataSet1
@@ -75,36 +82,15 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
+            this.Id,
             this.titleDataGridViewTextBoxColumn,
             this.howToDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.recipeBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(216, 10);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // howToDataGridViewTextBoxColumn
-            // 
-            this.howToDataGridViewTextBoxColumn.DataPropertyName = "HowTo";
-            this.howToDataGridViewTextBoxColumn.HeaderText = "HowTo";
-            this.howToDataGridViewTextBoxColumn.Name = "howToDataGridViewTextBoxColumn";
-            this.howToDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // recipeBindingSource1
             // 
@@ -130,20 +116,11 @@
             this.idDataGridViewTextBoxColumn1,
             this.nameDataGridViewTextBoxColumn});
             this.dataGridView2.DataSource = this.ingredientBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(216, 207);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 230);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(284, 194);
             this.dataGridView2.TabIndex = 2;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataMember = "Ingredient";
-            this.ingredientBindingSource.DataSource = this.dbDataSet1;
-            // 
-            // ingredientTableAdapter
-            // 
-            this.ingredientTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -159,9 +136,79 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataMember = "Ingredient";
+            this.ingredientBindingSource.DataSource = this.dbDataSet1;
+            // 
+            // ingredientTableAdapter
+            // 
+            this.ingredientTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDingredientDataGridViewTextBoxColumn,
+            this.iDrecipeDataGridViewTextBoxColumn});
+            this.dataGridView3.DataSource = this.thingsUneedBindingSource;
+            this.dataGridView3.Location = new System.Drawing.Point(433, 64);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView3.TabIndex = 3;
+            // 
+            // iDingredientDataGridViewTextBoxColumn
+            // 
+            this.iDingredientDataGridViewTextBoxColumn.DataPropertyName = "IDingredient";
+            this.iDingredientDataGridViewTextBoxColumn.HeaderText = "IDingredient";
+            this.iDingredientDataGridViewTextBoxColumn.Name = "iDingredientDataGridViewTextBoxColumn";
+            this.iDingredientDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDrecipeDataGridViewTextBoxColumn
+            // 
+            this.iDrecipeDataGridViewTextBoxColumn.DataPropertyName = "IDrecipe";
+            this.iDrecipeDataGridViewTextBoxColumn.HeaderText = "IDrecipe";
+            this.iDrecipeDataGridViewTextBoxColumn.Name = "iDrecipeDataGridViewTextBoxColumn";
+            this.iDrecipeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // thingsUneedBindingSource
+            // 
+            this.thingsUneedBindingSource.DataMember = "ThingsUneed";
+            this.thingsUneedBindingSource.DataSource = this.dbDataSet1;
+            // 
+            // thingsUneedTableAdapter
+            // 
+            this.thingsUneedTableAdapter.ClearBeforeFill = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // howToDataGridViewTextBoxColumn
+            // 
+            this.howToDataGridViewTextBoxColumn.DataPropertyName = "HowTo";
+            this.howToDataGridViewTextBoxColumn.HeaderText = "HowTo";
+            this.howToDataGridViewTextBoxColumn.Name = "howToDataGridViewTextBoxColumn";
+            this.howToDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(778, 513);
+            this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -174,6 +221,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.recipeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thingsUneedBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,15 +234,20 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource recipeBindingSource;
         private dbDataSetTableAdapters.RecipeTableAdapter recipeTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn howToDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource recipeBindingSource1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource ingredientBindingSource;
         private dbDataSetTableAdapters.IngredientTableAdapter ingredientTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.BindingSource thingsUneedBindingSource;
+        private dbDataSetTableAdapters.ThingsUneedTableAdapter thingsUneedTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDingredientDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDrecipeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn howToDataGridViewTextBoxColumn;
     }
 }
 

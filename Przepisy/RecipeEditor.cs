@@ -45,23 +45,21 @@ namespace Przepisy
             newRecipe.Title = title;
 
             this.dataSet.Recipe.Rows.Add(newRecipe);
-            this.recipeTableAdapter.Update(this.dataSet.Recipe);
+            try
+            {
+                this.recipeTableAdapter.Update(this.dataSet.Recipe);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             int recipeID = newRecipe.Id;
 
             IngredientChecker checker = new IngredientChecker(unparsedingrediance,dataSet);
             List<int> ingredientIdList = checker.idList;
             intermediateTabelFiller(ingredientIdList, recipeID);
-                /*for (int i = 0; i < foundRows.Length; i++)
-            {
-                Console.WriteLine(foundRows[i][0]);}*/
-            
-
-            //addIngredient("Bodzio");
-            
+          
             return true;
-
-
-
         }
        
        

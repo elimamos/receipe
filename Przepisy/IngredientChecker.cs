@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace Przepisy
 {
-    class IngredientChecker
+    class IngredientChecker:IngredientParser
     {
-        private dbDataSetTableAdapters.IngredientTableAdapter ingredientTableAdapter;
-        dbDataSet dataSet;
+        
         public List<int> idList { get; set; }
         
 
-        public IngredientChecker(string unparsedingrediance, dbDataSet dataSet)
+        public IngredientChecker(string unparsedingrediance, dbDataSet dataSet) :base(unparsedingrediance,dataSet)
         {
-          
-            this.dataSet = dataSet;
-            this.ingredientTableAdapter = new Przepisy.dbDataSetTableAdapters.IngredientTableAdapter();
-            List<string> ingredientsList = parseIngrediance(unparsedingrediance);
+                      
             this.idList= getIngredientIDlist(ingredientsList);
         
         }
@@ -33,7 +29,7 @@ namespace Przepisy
             foreach (string value in ingredientsList){
                idList.Add(checkList(value));
             }
-            idList.ForEach(Print);
+            //idList.ForEach(Print);
             return idList;
         } 
 
@@ -47,15 +43,7 @@ namespace Przepisy
          }
 
 
-        private List<string> parseIngrediance(string unparsedingrediance)
-        {
-            unparsedingrediance = unparsedingrediance.ToLower();
-            List<string> ingrediancelist = unparsedingrediance.Split(',').ToList();
-            return ingrediancelist;
-        }
-
-
-        private int checkList(string name)
+         private int checkList(string name)
         {
             DataRow[] foundRows = this.dataSet.Ingredient.Select("Name = '" + name + "'");
             if (foundRows.Length == 1)
