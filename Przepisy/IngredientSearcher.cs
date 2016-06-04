@@ -9,16 +9,23 @@ namespace Przepisy
 {
     class IngredientSearcher : IngredientParser
     {
-        public List<int> recipeID { get; set; }
-
+        public Dictionary<int,double> dict { get; set; }
+        public int ingredientCount{get; set;}
         public IngredientSearcher(string unparsedIngrediance, dbDataSet dataSet)
             : base(unparsedIngrediance, dataSet)
         {
             List<int> ingredientIDlist = getIngredientID(ingredientsList);
-            Dictionary<int,int> suggestionList=createSuggestionList(ingredientIDlist);
+            ingredientCount = ingredientIDlist.Count;
+            Dictionary<int, int> suggestionList = createSuggestionList(ingredientIDlist);
             var sortedDict = from entry in suggestionList orderby entry.Value descending select entry;
-            sortedDict.ToList().ForEach(x => Console.WriteLine(x.Key + " " + x.Value));
+            dict=new Dictionary<int,double>();
+
+            foreach (var entry in sortedDict)
+            {
+                this.dict.Add(entry.Key, entry.Value*100/(double)ingredientCount);
+            }
         }
+           
 
         private List<int> getIngredientID(List<string> ingredient)
         {
@@ -60,9 +67,7 @@ namespace Przepisy
             foreach (int i in ingredientID)
             {
                 suggestionList = updateSuggestionsList(suggestionList, i);
-            }
-            //suggestionList.ToList().ForEach(x => Console.WriteLine(x.Key + " " + x.Value));
-            
+            }          
             return suggestionList;
         }
 

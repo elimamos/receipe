@@ -15,12 +15,12 @@ namespace Przepisy
         private dbDataSetTableAdapters.RecipeTableAdapter recipeTableAdapter;
         private dbDataSetTableAdapters.ThingsUneedTableAdapter thingsUneedTableAdapter;
         
-        private System.Windows.Forms.BindingSource recipeBindingSource;
+        //private System.Windows.Forms.BindingSource recipeBindingSource;
         
-        public RecipeEditor(dbDataSet dataSet,dbDataSetTableAdapters.RecipeTableAdapter recipeTableAdapter,System.Windows.Forms.BindingSource recipeBindingSource) {
+        public RecipeEditor(dbDataSet dataSet) {
             this.dataSet = dataSet;
-            this.recipeTableAdapter = recipeTableAdapter;
-            this.recipeBindingSource = recipeBindingSource;
+            this.recipeTableAdapter = new Przepisy.dbDataSetTableAdapters.RecipeTableAdapter();
+            //this.recipeBindingSource = new Przepisy.dbDataSetTableAdapters.ThingsUneedTableAdapter();
             this.thingsUneedTableAdapter = new Przepisy.dbDataSetTableAdapters.ThingsUneedTableAdapter();
            
          }
