@@ -32,6 +32,7 @@ namespace Przepisy
 
 
             List<string> displayItemList = foundRows.ToList();
+            Console.WriteLine(displayItemList.Count);
            // displayItemList.ForEach(i => Console.Write("{0}\n", i));
 
 

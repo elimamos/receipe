@@ -25,13 +25,7 @@ namespace Przepisy
            // this.itemList.Add(new DisplayItem("test","80"));
            // this.itemList.Add(new DisplayItem("test2","100"));
             
-			 itemList=displayListCreator.display();
-             Console.WriteLine(itemList.Count);
-			         
-        itemList.ForEach(i => Console.Write("{0}\n", i));
-           /* var bindingList = new BindingList<string>(itemList);
-           var source = new BindingSource(bindingList,null);
-           dataGridView4.DataSource = source;*/
+           
             
         }
 
@@ -41,11 +35,19 @@ namespace Przepisy
             this.thingsUneedTableAdapter.Fill(this.dbDataSet1.ThingsUneed);
             // TODO: This line of code loads data into the 'dbDataSet1.Ingredient' table. You can move, or remove it, as needed.
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
-            this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);  
+            this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
+
+            this.itemList = displayListCreator.display();
+            Console.WriteLine(itemList.Count);
+             itemList.ForEach(i => Console.Write("{0}\n", i));
+            BindingList<string> bindingList = new BindingList<string>(itemList);
+           var source = new BindingSource(bindingList,null);
+           dataGridView4.DataSource = source;
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
             RecipeEditor editor = new RecipeEditor(dbDataSet1);
+
            // editor.adding("Solos z kaparami","HOW TO","losos,kapary");
     
             /*CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
@@ -81,7 +83,7 @@ namespace Przepisy
        
         private void button2_Click(object sender, EventArgs e)
         {
-            displayListCreator.display();
+           // displayListCreator.display();
 
         }
     }
