@@ -15,19 +15,24 @@ namespace Przepisy
 {
     public partial class Form1 : Form
     {
-        private List<DisplayItem> itemList;
+       private List<string> itemList;
         private DisplayListCreator displayListCreator;
         public Form1()
         {
             InitializeComponent();
             this.displayListCreator = new DisplayListCreator(dbDataSet1);
             //this.itemList = new List<DisplayItem>();
-            //this.itemList.Add(new DisplayItem("test","80"));
-            //this.itemList.Add(new DisplayItem("test2","100"));
-            itemList=displayListCreator.display("kapary,woda");
-            var bindingList = new BindingList<DisplayItem>(itemList);
-            var source = new BindingSource(bindingList,null);
-            dataGridView4.DataSource = source;
+           // this.itemList.Add(new DisplayItem("test","80"));
+           // this.itemList.Add(new DisplayItem("test2","100"));
+            
+			 itemList=displayListCreator.display();
+             Console.WriteLine(itemList.Count);
+			         
+        itemList.ForEach(i => Console.Write("{0}\n", i));
+           /* var bindingList = new BindingList<string>(itemList);
+           var source = new BindingSource(bindingList,null);
+           dataGridView4.DataSource = source;*/
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -66,8 +71,8 @@ namespace Przepisy
             dataGridView1.Rows[rowIndex].Visible = true*/
 
            // IngredientSearcher searcher = new IngredientSearcher("losos,kapary,chmiel", dbDataSet1);
-            DisplayListCreator display = new DisplayListCreator(dbDataSet1);
-            display.display("woda,chmiel,kapary");
+            //DisplayListCreator display = new DisplayListCreator(dbDataSet1);
+           // display.display();
 
             
             
@@ -76,8 +81,8 @@ namespace Przepisy
        
         private void button2_Click(object sender, EventArgs e)
         {
-       
-          
+            displayListCreator.display();
+
         }
     }
 }

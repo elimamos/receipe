@@ -24,18 +24,31 @@ namespace Przepisy
 
             return answear;
         }
-        public List<DisplayItem> display()
+        public List<string> display()
         {
-            DataRow[] foundRows = this.dataSet.Recipe.Select(null, null, DataViewRowState.OriginalRows);
-            Console.WriteLine(foundRows.Length); 
-            List<DisplayItem> displayItemList= new List<DisplayItem>();
-            foreach (DataRow r in foundRows) {
-                DisplayItem item = new DisplayItem();
-                item.name = (string)r[1];
-                item.fitness = recommendation(-1);
-                displayItemList.Add(item);
-            }
+            IEnumerable<string> foundRows = dataSet.Recipe.Select(Recipe => Recipe.Title);
 
+            Console.WriteLine(foundRows.AsEnumerable().Count());
+
+
+            List<string> displayItemList = foundRows.ToList();
+           // displayItemList.ForEach(i => Console.Write("{0}\n", i));
+
+
+
+            /*   Console.WriteLine(displayItemList.Count);
+               List<DisplayItem> displayItemList = new List<DisplayItem>();
+               foreach (DataRow r in foundRows)
+               {
+                   DisplayItem item = new DisplayItem();
+                   item.name = (string)r[1];
+                   item.fitness = recommendation(-1);
+                   displayItemList.Add(item);
+                   return displayItemList;
+               }
+         
+            
+               // return displayItemList;*/
             return displayItemList;
         }
 
@@ -50,5 +63,5 @@ namespace Przepisy
         }
 
         
-    }
+}
 }
