@@ -24,33 +24,44 @@ namespace Przepisy
 
             return answear;
         }
-        public List<string> display()
+
+        public List<StringBuilder> display()
         {
-            IEnumerable<string> foundRows = dataSet.Recipe.Select(Recipe => Recipe.Title);
+            var foundRows = dataSet.Recipe.ToList();
+           
+            //Console.WriteLine(foundRows.AsEnumerable().Count());
 
-            Console.WriteLine(foundRows.AsEnumerable().Count());
 
-
-            List<string> displayItemList = foundRows.ToList();
-            Console.WriteLine(displayItemList.Count);
+          //  List<string> displayItemList = foundRows.ToList();
+            //Console.WriteLine(displayItemList.Count);
            // displayItemList.ForEach(i => Console.Write("{0}\n", i));
 
+            StringBuilder output = new StringBuilder();
+            foreach (DataRow rows in dataSet.Recipe.Rows)
+            {
+                foreach (DataColumn col in dataSet.Recipe.Columns)
+                {
+                    output.AppendFormat("{0} ", rows[col]);
+                }
 
+                output.AppendLine();
+            }
 
-            /*   Console.WriteLine(displayItemList.Count);
-               List<DisplayItem> displayItemList = new List<DisplayItem>();
-               foreach (DataRow r in foundRows)
+            var r = new List<StringBuilder> { output };
+            r.ForEach(i => Console.Write("{0}\n", i));
+            /*  List<DisplayItem> displayItemList = new List<DisplayItem>();
+               foreach (string r in output)
                {
                    DisplayItem item = new DisplayItem();
                    item.name = (string)r[1];
-                   item.fitness = recommendation(-1);
+                   item.fitness = recommendation(-1); 
                    displayItemList.Add(item);
-                   return displayItemList;
+                
                }
-         
+         */
             
-               // return displayItemList;*/
-            return displayItemList;
+            
+            return r;
         }
 
         public List<DisplayItem> display(string unparsedFilter)
