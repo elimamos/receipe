@@ -45,10 +45,10 @@
             this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ingredientTableAdapter = new Przepisy.dbDataSetTableAdapters.IngredientTableAdapter();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.thingsUneedBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.thingsUneedTableAdapter = new Przepisy.dbDataSetTableAdapters.ThingsUneedTableAdapter();
             this.iDingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDrecipeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thingsUneedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.thingsUneedTableAdapter = new Przepisy.dbDataSetTableAdapters.ThingsUneedTableAdapter();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataSet1)).BeginInit();
@@ -185,15 +185,6 @@
             this.dataGridView3.Size = new System.Drawing.Size(240, 150);
             this.dataGridView3.TabIndex = 3;
             // 
-            // thingsUneedBindingSource
-            // 
-            this.thingsUneedBindingSource.DataMember = "ThingsUneed";
-            this.thingsUneedBindingSource.DataSource = this.dbDataSet1;
-            // 
-            // thingsUneedTableAdapter
-            // 
-            this.thingsUneedTableAdapter.ClearBeforeFill = true;
-            // 
             // iDingredientDataGridViewTextBoxColumn
             // 
             this.iDingredientDataGridViewTextBoxColumn.DataPropertyName = "IDingredient";
@@ -209,12 +200,21 @@
             this.iDrecipeDataGridViewTextBoxColumn.Name = "iDrecipeDataGridViewTextBoxColumn";
             this.iDrecipeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // thingsUneedBindingSource
+            // 
+            this.thingsUneedBindingSource.DataMember = "ThingsUneed";
+            this.thingsUneedBindingSource.DataSource = this.dbDataSet1;
+            // 
+            // thingsUneedTableAdapter
+            // 
+            this.thingsUneedTableAdapter.ClearBeforeFill = true;
+            // 
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(397, 242);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(263, 172);
+            this.dataGridView4.Size = new System.Drawing.Size(479, 172);
             this.dataGridView4.TabIndex = 4;
             // 
             // button2
@@ -229,7 +229,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(778, 513);
+            this.ClientSize = new System.Drawing.Size(963, 513);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);

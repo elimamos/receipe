@@ -15,7 +15,7 @@ namespace Przepisy
 {
     public partial class Form1 : Form
     {
-        private List<StringBuilder> itemList;
+        private List<DisplayItem> itemList;
         private DisplayListCreator displayListCreator;
         public Form1()
         {
@@ -37,15 +37,18 @@ namespace Przepisy
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
             this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
 
-          //  this.itemList = displayListCreator.display();
-           // Console.WriteLine(itemList.Count);
-           /*  itemList.ForEach(i => Console.Write("{0}\n", i));
-             BindingList<StringBuilder> bindingList = new BindingList<StringBuilder>(itemList);
+           this.itemList = displayListCreator.display();
+           //Console.WriteLine(itemList.Count);
+            // itemList.ForEach(i => Console.Write("{0}\n", i));
+             BindingList<DisplayItem> bindingList = new BindingList<DisplayItem>(itemList);
            var source = new BindingSource(bindingList,null);
-           Console.WriteLine(source.Current);
-           dataGridView4.DataSource = source;
-           Console.WriteLine(source.Current);
-            BindGrid();*/
+           //Console.WriteLine(source.Current);
+          dataGridView4.DataSource = source;
+     
+          // dataGridView4.Show();
+
+          // Console.WriteLine(source.Current);
+         //   BindGrid();
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -86,10 +89,10 @@ namespace Przepisy
        
         private void button2_Click(object sender, EventArgs e)
         {
-           //displayListCreator.display();
-           BindGrid();
+           displayListCreator.display();
+         //  BindGrid();
         }
-        private void BindGrid()
+      /*  private void BindGrid()
 {
     dataGridView4.AutoGenerateColumns = false;
 
@@ -110,6 +113,6 @@ namespace Przepisy
             
     //Bind BindingList directly to the DataGrid, no need of BindingSource
    // dataGridView4.DataSource = filenamesList;
-}
+}*/
     }
 }

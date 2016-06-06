@@ -25,10 +25,44 @@ namespace Przepisy
             return answear;
         }
 
-        public List<StringBuilder> display()
+        public List<DisplayItem> display()
         {
-            var foundRows = dataSet.Recipe.ToList();
+
+            List<string> title = getTitle();
+            title.ForEach(i => Console.Write("{0}\n", i));
+
+          //  List<DataRow> foundRows=new List<DataRow>();
+            //foundRows.Add(dataSet.Recipe.Rows.ToString());
+           //int length= dataSet.Recipe.Count;
+           //Console.WriteLine(length);
+           List<DisplayItem> displayItemList = new List<DisplayItem>();
+
+            foreach(string s in title){
+                DisplayItem item = new DisplayItem();
+                item.name = s;
+                item.fitness = recommendation(-1); 
+                displayItemList.Add(item);
+                Console.WriteLine(item.name);
+            }
+
            
+          //  string k = dataSet.Recipe.Rows.ToString();
+          //  Console.WriteLine(k);
+
+            /*for (int i = 0; i < 2 ; i++)
+			{
+                foundRows[1] = dataSet.Recipe.Rows[i];
+                Console.WriteLine(foundRows[i]);
+			 
+			}
+
+
+            foreach (DataRow r in foundRows)
+            {
+                
+            }
+
+            //DataSet[]foundRows = dataSet.Recipe.Select(bool o => o = true);           
             //Console.WriteLine(foundRows.AsEnumerable().Count());
 
 
@@ -36,7 +70,7 @@ namespace Przepisy
             //Console.WriteLine(displayItemList.Count);
            // displayItemList.ForEach(i => Console.Write("{0}\n", i));
 
-            StringBuilder output = new StringBuilder();
+           /* StringBuilder output = new StringBuilder();
             foreach (DataRow rows in dataSet.Recipe.Rows)
             {
                 foreach (DataColumn col in dataSet.Recipe.Columns)
@@ -59,9 +93,9 @@ namespace Przepisy
                 
                }
          */
-            
-            
-            return r;
+
+
+            return displayItemList;
         }
 
         public List<DisplayItem> display(string unparsedFilter)
@@ -74,6 +108,16 @@ namespace Przepisy
 
         }
 
+        public List<string> getTitle()
+        {
+            DataTable dt = dataSet.Recipe;
+            List<string> title = new List<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                title.Add(row[1].ToString());
+            }
+            return title; // Ultimately to get a string list.
+        }
         
 }
 }
