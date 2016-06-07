@@ -22,11 +22,20 @@ namespace Przepisy
 
             foreach (var entry in sortedDict)
             {
-                this.dict.Add(entry.Key, entry.Value*100/(double)ingredientCount);
+                this.dict.Add(entry.Key, countPercentage( entry.Value));
+                
+               
             }
         }
-           
 
+       private double countPercentage(double value)
+        {
+            double percentage;
+            percentage = Math.Ceiling(value * 100 / ingredientCount);
+            double percentageToTen = (Math.Ceiling(percentage / 10.0d) * 10);
+
+            return percentageToTen;
+        }
         private List<int> getIngredientID(List<string> ingredient)
         {
             List<int> IDlist = new List<int>();

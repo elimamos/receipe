@@ -21,11 +21,7 @@ namespace Przepisy
         {
             InitializeComponent();
             this.displayListCreator = new DisplayListCreator(dbDataSet1);
-            //this.itemList = new List<DisplayItem>();
-           // this.itemList.Add(new DisplayItem("test","80"));
-           // this.itemList.Add(new DisplayItem("test2","100"));
-            
-           
+                     
             
         }
 
@@ -36,23 +32,48 @@ namespace Przepisy
             // TODO: This line of code loads data into the 'dbDataSet1.Ingredient' table. You can move, or remove it, as needed.
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
             this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
+            dataGridView4.AutoGenerateColumns = false;
+            DataGridViewCell cell = new DataGridViewTextBoxCell();
+            DataGridViewTextBoxColumn recipeName = new DataGridViewTextBoxColumn()
+            {
+                CellTemplate = cell,
+                Name = "recipeTitle",
+                HeaderText = "Recipe Title",
+                DataPropertyName = "name"
+            };
+            DataGridViewTextBoxColumn recipeFitness = new DataGridViewTextBoxColumn()
+            {
+                CellTemplate = cell,
+                Name = "recipeFitness",
+                HeaderText = "Match",
+                DataPropertyName = "fitness"
+            };
 
-           this.itemList = displayListCreator.display();
-           //Console.WriteLine(itemList.Count);
-            // itemList.ForEach(i => Console.Write("{0}\n", i));
+            dataGridView4.Columns.Add(recipeName);
+            dataGridView4.Columns.Add(recipeFitness);
+
+           
+            this.itemList = displayListCreator.display();
+            var filenamesList = new BindingList<DisplayItem>(this.itemList); // <-- BindingList
+
+            refreshRecommendationListDG();
+
+
+
+        /*
              BindingList<DisplayItem> bindingList = new BindingList<DisplayItem>(itemList);
            var source = new BindingSource(bindingList,null);
-           //Console.WriteLine(source.Current);
-          dataGridView4.DataSource = source;
+           
+          dataGridView4.DataSource = source;*/
      
-          // dataGridView4.Show();
-
-          // Console.WriteLine(source.Current);
-         //   BindGrid();
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            RecipeEditor editor = new RecipeEditor(dbDataSet1);
+
+
+            this.itemList = displayListCreator.display("kapary , woda, losos ");
+           refreshRecommendationListDG();
+           // RecipeEditor editor = new RecipeEditor(dbDataSet1);
 
            // editor.adding("Solos z kaparami","HOW TO","losos,kapary");
     
@@ -78,41 +99,36 @@ namespace Przepisy
             rowIndex = row.Index;
             dataGridView1.Rows[rowIndex].Visible = true*/
 
-           // IngredientSearcher searcher = new IngredientSearcher("losos,kapary,chmiel", dbDataSet1);
-            //DisplayListCreator display = new DisplayListCreator(dbDataSet1);
-           // display.display();
+           //IngredientSearcher searcher = new IngredientSearcher("losos,kapary,chmiel", dbDataSet1);
+          // DisplayListCreator display = new DisplayListCreator(dbDataSet1);
 
+
+         /*  foreach (var entry in searcher.dict )
+           {
+               
+
+               Console.WriteLine(entry.Key + "      " + entry.Value);
+           }
             
-            
-       
+     */  
     }
        
         private void button2_Click(object sender, EventArgs e)
         {
-           displayListCreator.display();
-         //  BindGrid();
+           //displayListCreator.display();
+         
         }
-      /*  private void BindGrid()
-{
-    dataGridView4.AutoGenerateColumns = false;
+        private void refreshRecommendationListDG() {
+         
+    
+    
 
-    //create the column programatically
-    DataGridViewCell cell = new DataGridViewTextBoxCell();
-    DataGridViewTextBoxColumn colFileName = new DataGridViewTextBoxColumn()
-    {
-        CellTemplate = cell, 
-        Name = "Value",
-        HeaderText = "File Name",
-        DataPropertyName = "" // Tell the column which property of FileName it should use
-     };
-
-   dataGridView4.Columns.Add(colFileName);
-            
-    var filelist =  displayListCreator.display();
-    var filenamesList = new BindingList<StringBuilder>(filelist); // <-- BindingList
-            
     //Bind BindingList directly to the DataGrid, no need of BindingSource
-   // dataGridView4.DataSource = filenamesList;
-}*/
+    dataGridView4.DataSource = this.itemList;
+            //BindingList<DisplayItem> bindingList = new BindingList<DisplayItem>(list);
+            //var source = new BindingSource(bindingList, null);
+//           dataGridView4.DataSource = source;
+        }
+      
     }
 }

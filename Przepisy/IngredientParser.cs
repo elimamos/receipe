@@ -24,7 +24,12 @@ namespace Przepisy
         {
             unparsedingrediance = unparsedingrediance.ToLower();
             List<string> ingrediancelist = unparsedingrediance.Split(',').ToList();
-            return ingrediancelist;
+            List<string> trimmedIngredianceList=new List<string>();
+            foreach (string s in ingrediancelist) {
+                trimmedIngredianceList.Add(s.Trim());
+            }
+
+            return trimmedIngredianceList;
         }
     }
  
