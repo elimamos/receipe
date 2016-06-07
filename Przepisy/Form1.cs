@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Data.SqlClient;
+
 
 
 namespace Przepisy
@@ -21,114 +21,184 @@ namespace Przepisy
         {
             InitializeComponent();
             this.displayListCreator = new DisplayListCreator(dbDataSet1);
-                     
-            
+            textBox1.ForeColor = SystemColors.GrayText;
+            textBox1.Text = "eggs, flour, butter...";
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            textBox2.ForeColor = SystemColors.GrayText;
+            textBox2.Text = "Title";
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
+            textBox3.ForeColor = SystemColors.GrayText;
+            textBox3.Text = "Ingredience";
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
+            richTextBox1.ForeColor = SystemColors.GrayText;
+            richTextBox1.Text = "Recipe instructions";
+            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
+            this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dbDataSet1.ThingsUneed' table. You can move, or remove it, as needed.
             this.thingsUneedTableAdapter.Fill(this.dbDataSet1.ThingsUneed);
-            // TODO: This line of code loads data into the 'dbDataSet1.Ingredient' table. You can move, or remove it, as needed.
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
             this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
             dataGridView4.AutoGenerateColumns = false;
+            dataGridView4.RowHeadersVisible = false;
+            MaximizeBox = false;
+            dataGridView4.ScrollBars = ScrollBars.Vertical;
+            dataGridView4.AllowUserToResizeRows = false;
+            dataGridView4.AllowUserToResizeColumns = false;
+            dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView4.MultiSelect = false;
+
             DataGridViewCell cell = new DataGridViewTextBoxCell();
             DataGridViewTextBoxColumn recipeName = new DataGridViewTextBoxColumn()
-            {
-                CellTemplate = cell,
-                Name = "recipeTitle",
-                HeaderText = "Recipe Title",
-                DataPropertyName = "name"
-            };
+               {
+                   CellTemplate = cell,
+                   Name = "recipeTitle",
+                   HeaderText = "Recipe Title",
+                   DataPropertyName = "name",
+                   Width = 440
+
+               };
             DataGridViewTextBoxColumn recipeFitness = new DataGridViewTextBoxColumn()
             {
+
                 CellTemplate = cell,
                 Name = "recipeFitness",
                 HeaderText = "Match",
-                DataPropertyName = "fitness"
+                DataPropertyName = "fitness",
+                Width = 326
+
             };
 
             dataGridView4.Columns.Add(recipeName);
             dataGridView4.Columns.Add(recipeFitness);
 
-           
-            this.itemList = displayListCreator.display();
-            var filenamesList = new BindingList<DisplayItem>(this.itemList); // <-- BindingList
 
-            refreshRecommendationListDG();
+            this.itemList=displayListCreator.display();
+            var filenamesList = new BindingList<DisplayItem>(this.itemList);
 
+            refreshRecommendationList();
 
-
-        /*
-             BindingList<DisplayItem> bindingList = new BindingList<DisplayItem>(itemList);
-           var source = new BindingSource(bindingList,null);
-           
-          dataGridView4.DataSource = source;*/
-     
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
 
-
-            this.itemList = displayListCreator.display("kapary , woda, losos ");
-           refreshRecommendationListDG();
-           // RecipeEditor editor = new RecipeEditor(dbDataSet1);
-
-           // editor.adding("Solos z kaparami","HOW TO","losos,kapary");
-    
-            /*CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-            currencyManager1.SuspendBinding();
-           
-            
-            foreach (DataGridViewRow r in dataGridView1.Rows)
+            Console.WriteLine(textBox1.Text.Length);
+            if (textBox1.Text == "eggs, flour, butter...")
             {
-
-                r.Visible = false;
+                refreshRecommendationList();
             }
+            else
+            {
+                refreshRecommendationList(textBox1.Text);
+            }
+        }
 
-
-            
-            int rowIndex = -1;
-            
-            DataGridViewRow row = dataGridView1.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => r.Cells["Id"].Value.ToString().Equals("5"))
-                .First();
-
-            rowIndex = row.Index;
-            dataGridView1.Rows[rowIndex].Visible = true*/
-
-           //IngredientSearcher searcher = new IngredientSearcher("losos,kapary,chmiel", dbDataSet1);
-          // DisplayListCreator display = new DisplayListCreator(dbDataSet1);
-
-
-         /*  foreach (var entry in searcher.dict )
-           {
-               
-
-               Console.WriteLine(entry.Key + "      " + entry.Value);
-           }
-            
-     */  
-    }
-       
-        private void button2_Click(object sender, EventArgs e)
+        private void refreshRecommendationList(string ingredience)
         {
-           //displayListCreator.display();
-         
-        }
-        private void refreshRecommendationListDG() {
-         
-    
-    
 
-    //Bind BindingList directly to the DataGrid, no need of BindingSource
-    dataGridView4.DataSource = this.itemList;
-            //BindingList<DisplayItem> bindingList = new BindingList<DisplayItem>(list);
-            //var source = new BindingSource(bindingList, null);
-//           dataGridView4.DataSource = source;
+            this.itemList = displayListCreator.display(ingredience);
+            dataGridView4.DataSource = this.itemList;
         }
-      
+        private void refreshRecommendationList()
+        {
+            this.itemList = displayListCreator.display();
+            dataGridView4.DataSource = this.itemList;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length == 0)
+            {
+                textBox1.Text = "eggs, flour, butter...";
+                textBox1.ForeColor = SystemColors.MenuText;
+            }
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "eggs, flour, butter...")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = SystemColors.MenuText;
+            }
+        }
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length == 0)
+            {
+                textBox2.Text = "Title";
+                textBox2.ForeColor = SystemColors.MenuText;
+            }
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "Title")
+            {
+                textBox2.Text = "";
+                textBox2.ForeColor = SystemColors.MenuText;
+            }
+        }
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Length == 0)
+            {
+                textBox3.Text = "Ingredience";
+                textBox3.ForeColor = SystemColors.MenuText;
+            }
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            if (textBox3.Text == "Ingredience")
+            {
+                textBox3.Text = "";
+                textBox3.ForeColor = SystemColors.MenuText;
+            }
+        }
+        private void richTextBox1_Leave(object sender, EventArgs e)
+        {
+            if (richTextBox1.Text.Length == 0)
+            {
+                richTextBox1.Text = "Recipe instructions";
+                richTextBox1.ForeColor = SystemColors.MenuText;
+            }
+        }
+
+        private void richTextBox1_Enter(object sender, EventArgs e)
+        {
+            if (richTextBox1.Text == "Recipe instructions")
+            {
+                richTextBox1.Text = "";
+                richTextBox1.ForeColor = SystemColors.MenuText;
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            RecipeEditor editor = new RecipeEditor(dbDataSet1);
+
+            editor.adding(textBox2.Text, richTextBox1.Text, textBox3.Text);
+            refreshRecommendationList();
+            textBox2.Clear();
+            textBox3.Clear();
+            richTextBox1.Clear();
+            refreshRecommendationList();
+            
+
+        }
+
     }
 }
