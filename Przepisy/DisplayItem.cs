@@ -10,10 +10,12 @@ namespace Przepisy
     {
         public string name { get; set; }
         public string fitness { get; set; }
-        public DisplayItem(string name, string fitness)
+        public int id { get; set; } 
+        public DisplayItem(string name, string fitness, int id)
         {
             this.name = name;
             this.fitness = fitness;
+            this.id = id;
         }
         public DisplayItem() {
             

@@ -17,9 +17,12 @@ namespace Przepisy
     {
         private List<DisplayItem> itemList;
         private DisplayListCreator displayListCreator;
+        private int rowIndex = 0;
+        RecipeEditor editor;
         public Form1()
         {
             InitializeComponent();
+             
             this.displayListCreator = new DisplayListCreator(dbDataSet1);
             textBox1.ForeColor = SystemColors.GrayText;
             textBox1.Text = "eggs, flour, butter...";
@@ -35,17 +38,16 @@ namespace Przepisy
             this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
             richTextBox1.ForeColor = SystemColors.GrayText;
             richTextBox1.Text = "Recipe instructions";
+            richTextBox2.BackColor = SystemColors.ButtonHighlight;
             this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
             this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
-
-
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             this.thingsUneedTableAdapter.Fill(this.dbDataSet1.ThingsUneed);
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
             this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
+            this.editor = new RecipeEditor(dbDataSet1);
             dataGridView4.AutoGenerateColumns = false;
             dataGridView4.RowHeadersVisible = false;
             MaximizeBox = false;
@@ -54,6 +56,7 @@ namespace Przepisy
             dataGridView4.AllowUserToResizeColumns = false;
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView4.MultiSelect = false;
+            
 
             DataGridViewCell cell = new DataGridViewTextBoxCell();
             DataGridViewTextBoxColumn recipeName = new DataGridViewTextBoxColumn()
@@ -86,6 +89,8 @@ namespace Przepisy
             refreshRecommendationList();
 
         }
+
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -99,7 +104,8 @@ namespace Przepisy
                 refreshRecommendationList(textBox1.Text);
             }
         }
-
+       
+        
         private void refreshRecommendationList(string ingredience)
         {
 
@@ -112,10 +118,7 @@ namespace Przepisy
             dataGridView4.DataSource = this.itemList;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
@@ -188,9 +191,9 @@ namespace Przepisy
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            RecipeEditor editor = new RecipeEditor(dbDataSet1);
+            
 
-            editor.adding(textBox2.Text, richTextBox1.Text, textBox3.Text);
+            this.editor.adding(textBox2.Text, richTextBox1.Text, textBox3.Text);
             refreshRecommendationList();
             textBox2.Clear();
             textBox3.Clear();
@@ -200,5 +203,30 @@ namespace Przepisy
 
         }
 
+      
+
+        private void dataGridView4_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           if (e.Button== MouseButtons.Right )
+            {
+                this.dataGridView4.Rows[e.RowIndex].Selected = true;
+                this.rowIndex = e.RowIndex;
+                this.contextMenuStrip1.Show(this.dataGridView4, e.Location);
+                contextMenuStrip1.Show(Cursor.Position);
+         }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editor.remove(this.itemList[this.rowIndex].id);
+            refreshRecommendationList();
+        }
+
+        private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.rowIndex = e.RowIndex;
+            Form f2 = new Form2(this.itemList[this.rowIndex].id);
+            f2.ShowDialog(); // Shows Form2
+        }
     }
 }

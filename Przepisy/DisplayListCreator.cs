@@ -23,20 +23,17 @@ namespace Przepisy
         public List<DisplayItem> display()
         {
             DataTable dt = dataSet.Recipe;
-            List<string> title = new List<string>();
+            List<DisplayItem> displayItemList = new List<DisplayItem>();
             foreach (DataRow row in dt.Rows)
             {
-                title.Add(row[1].ToString());
-            }
-            List<DisplayItem> displayItemList = new List<DisplayItem>();
-            foreach (string s in title)
-            {
                 DisplayItem item = new DisplayItem();
-                item.name = s;
+                item.name=row[1].ToString();
                 item.fitness = recommendation(-1);
+                item.id = (int) row[0];
                 displayItemList.Add(item);
+              
             }
-
+            
             return displayItemList;
         }
 
@@ -48,11 +45,6 @@ namespace Przepisy
             IngredientSearcher search = new IngredientSearcher(unparsedFilter, dataSet);
             Dictionary<int, double> recipeDict = search.dict;
 
-          /*  foreach (var v in recipeDict)
-            {
-                Console.WriteLine(v.Key + "      " + v.Value);
-            }
-            */
            List<DisplayItem> recommendationList = new List<DisplayItem>();
           
 
@@ -65,25 +57,14 @@ namespace Przepisy
                     {
                         DisplayItem item = new DisplayItem();
                         item.name= (string)row[1];
-                        
+                        item.id = (int)row[0];
                         item.fitness = recommendation(recipeDict[id]);
                         recommendationList.Add(item);
 
                     }
                 }
             }
-
-        //  recommendationList.ForEach(i => Console.Write("{0}\n", i.name+" "+i.fitness));
-            
-
-           
-        
             return recommendationList;
-
-
-            //search.dict.ToList().ForEach(x => Console.WriteLine(x.Key + " " + x.Value));
-
-            
 
         }
 

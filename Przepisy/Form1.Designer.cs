@@ -45,12 +45,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tableAdapterManager = new Przepisy.dbDataSetTableAdapters.TableAdapterManager();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeBindingSource1)).BeginInit();
@@ -61,6 +64,8 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbDataSet1
@@ -102,106 +107,107 @@
             // 
             // dataGridView4
             // 
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.Menu;
+            this.dataGridView4.AllowUserToResizeColumns = false;
+            this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.Lavender;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView4.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView4.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dataGridView4.Location = new System.Drawing.Point(3, 102);
+            this.dataGridView4.Location = new System.Drawing.Point(3, 99);
+            this.dataGridView4.MultiSelect = false;
             this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Control;
+            this.dataGridView4.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridView4.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.dataGridView4.Size = new System.Drawing.Size(614, 255);
             this.dataGridView4.TabIndex = 4;
+            this.dataGridView4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellDoubleClick);
+            this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_CellMouseClick);
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl1.Location = new System.Drawing.Point(2, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(628, 386);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dataGridView4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.ForeColor = System.Drawing.Color.Blue;
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(620, 360);
+            this.tabPage1.Size = new System.Drawing.Size(620, 357);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "HOME";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.textBox1.Location = new System.Drawing.Point(6, 44);
+            this.textBox1.Location = new System.Drawing.Point(18, 52);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(437, 20);
             this.textBox1.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Location = new System.Drawing.Point(477, 36);
+            this.button1.Location = new System.Drawing.Point(477, 40);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 35);
+            this.button1.Size = new System.Drawing.Size(110, 42);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.ForeColor = System.Drawing.Color.Blue;
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(620, 360);
+            this.tabPage2.Size = new System.Drawing.Size(620, 357);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ADDING";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // textBox3
             // 
-            this.button2.Location = new System.Drawing.Point(500, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.textBox3.Location = new System.Drawing.Point(33, 296);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(556, 20);
+            this.textBox3.TabIndex = 13;
             // 
-            // tabPage3
+            // textBox2
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(762, 360);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "HELP";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.IngredientTableAdapter = this.ingredientTableAdapter;
-            this.tableAdapterManager.RecipeTableAdapter = this.recipeTableAdapter;
-            this.tableAdapterManager.ThingsUneedTableAdapter = this.thingsUneedTableAdapter;
-            this.tableAdapterManager.UpdateOrder = Przepisy.dbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.textBox2.Location = new System.Drawing.Point(33, 41);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(440, 20);
+            this.textBox2.TabIndex = 12;
             // 
             // richTextBox1
             // 
@@ -211,19 +217,66 @@
             this.richTextBox1.TabIndex = 11;
             this.richTextBox1.Text = "";
             // 
-            // textBox2
+            // button2
             // 
-            this.textBox2.Location = new System.Drawing.Point(33, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(440, 20);
-            this.textBox2.TabIndex = 12;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(501, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(69, 31);
+            this.button2.TabIndex = 6;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // textBox3
+            // tabPage3
             // 
-            this.textBox3.Location = new System.Drawing.Point(33, 296);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(556, 20);
-            this.textBox3.TabIndex = 13;
+            this.tabPage3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage3.BackgroundImage")));
+            this.tabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage3.Controls.Add(this.richTextBox2);
+            this.tabPage3.ForeColor = System.Drawing.Color.Blue;
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(620, 357);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "HELP";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.White;
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Enabled = false;
+            this.richTextBox2.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.richTextBox2.Location = new System.Drawing.Point(122, 93);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.richTextBox2.Size = new System.Drawing.Size(369, 185);
+            this.richTextBox2.TabIndex = 0;
+            this.richTextBox2.Text = "sda";
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.IngredientTableAdapter = this.ingredientTableAdapter;
+            this.tableAdapterManager.RecipeTableAdapter = this.recipeTableAdapter;
+            this.tableAdapterManager.ThingsUneedTableAdapter = this.thingsUneedTableAdapter;
+            this.tableAdapterManager.UpdateOrder = Przepisy.dbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -248,6 +301,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -274,6 +329,9 @@
         private dbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

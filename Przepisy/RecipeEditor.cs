@@ -61,6 +61,26 @@ namespace Przepisy
           
             return true;
         }
+        public void remove(int id) {
+            
+            foreach (DataRow row in dataSet.Recipe.Rows) {
+                if ((int)row[0] == id)
+                {
+                    row.Delete();
+                }
+            }
+            this.recipeTableAdapter.Update(this.dataSet.Recipe);
+            
+            List<DataRow> rowsToDelete = new List<DataRow>();
+            foreach (DataRow row in dataSet.ThingsUneed.Rows)
+            {
+                if ((int)row[1] == id) {
+                    row.Delete();
+                }
+            }
+
+            this.thingsUneedTableAdapter.Update(this.dataSet.ThingsUneed);
+        }
        
        
     }
