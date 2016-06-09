@@ -225,7 +225,9 @@ namespace Przepisy
         private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             this.rowIndex = e.RowIndex;
-            Form f2 = new Form2(this.itemList[this.rowIndex].id);
+            int id = this.itemList[this.rowIndex].id;
+
+            Form f2 = new Form2( id, dbDataSet1);
             f2.ShowDialog(); // Shows Form2
         }
     }
