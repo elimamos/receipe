@@ -27,6 +27,8 @@ namespace Przepisy
 
             }
             textBox2.Text = (string)recipeRow[1];
+            textBox2.TextAlign = HorizontalAlignment.Center;
+        
             richTextBox1.Text = (string)recipeRow[2];
             
             List<int> idList= new List<int>();
@@ -46,7 +48,10 @@ namespace Przepisy
             }
             ingredients = ingredients.Remove(ingredients.Length - 2);
             textBox3.Text = ingredients;
+
         }
+
+       
        
 
     }

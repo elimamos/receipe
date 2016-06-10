@@ -24,38 +24,16 @@ namespace Przepisy
             InitializeComponent();
              
             this.displayListCreator = new DisplayListCreator(dbDataSet1);
-            textBox1.ForeColor = SystemColors.GrayText;
-            textBox1.Text = "eggs, flour, butter...";
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            textBox2.ForeColor = SystemColors.GrayText;
-            textBox2.Text = "Title";
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
-            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
-            textBox3.ForeColor = SystemColors.GrayText;
-            textBox3.Text = "Ingredience";
-            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
-            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
-            richTextBox1.ForeColor = SystemColors.GrayText;
-            richTextBox1.Text = "Recipe instructions";
-            richTextBox2.BackColor = SystemColors.ButtonHighlight;
-            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
-            this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            style();
             this.thingsUneedTableAdapter.Fill(this.dbDataSet1.ThingsUneed);
             this.ingredientTableAdapter.Fill(this.dbDataSet1.Ingredient);
             this.recipeTableAdapter.Fill(this.dbDataSet1.Recipe);
             this.editor = new RecipeEditor(dbDataSet1);
-            dataGridView4.AutoGenerateColumns = false;
-            dataGridView4.RowHeadersVisible = false;
-            MaximizeBox = false;
-            dataGridView4.ScrollBars = ScrollBars.Vertical;
-            dataGridView4.AllowUserToResizeRows = false;
-            dataGridView4.AllowUserToResizeColumns = false;
-            dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView4.MultiSelect = false;
+           
             
 
             DataGridViewCell cell = new DataGridViewTextBoxCell();
@@ -64,6 +42,7 @@ namespace Przepisy
                    CellTemplate = cell,
                    Name = "recipeTitle",
                    HeaderText = "Recipe Title",
+                  
                    DataPropertyName = "name",
                    Width = 440
 
@@ -104,7 +83,18 @@ namespace Przepisy
                 refreshRecommendationList(textBox1.Text);
             }
         }
-       
+        private void button1_Enter(object sender, EventArgs e)
+        {
+            Console.WriteLine(textBox1.Text.Length);
+            if (textBox1.Text == "eggs, flour, butter...")
+            {
+                refreshRecommendationList();
+            }
+            else
+            {
+                refreshRecommendationList(textBox1.Text);
+            }
+        }
         
         private void refreshRecommendationList(string ingredience)
         {
@@ -230,5 +220,47 @@ namespace Przepisy
             Form f2 = new Form2( id, dbDataSet1);
             f2.ShowDialog(); // Shows Form2
         }
+        private void style() {
+            //Form1 properties
+            MaximizeBox = false;
+            //Datagridview4 properties
+            dataGridView4.AutoGenerateColumns = false;
+            dataGridView4.RowHeadersVisible = false;
+            dataGridView4.ScrollBars = ScrollBars.Vertical;
+            dataGridView4.AllowUserToResizeRows = false;
+            dataGridView4.AllowUserToResizeColumns = false;
+            dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView4.MultiSelect = false;
+            dataGridView4.EnableHeadersVisualStyles = false;
+            //textBox properties
+            textBox1.ForeColor = SystemColors.GrayText;
+            textBox1.Text = "eggs, flour, butter...";
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            textBox2.ForeColor = SystemColors.GrayText;
+            textBox2.Text = "Title";
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
+            textBox3.ForeColor = SystemColors.GrayText;
+            textBox3.Text = "Ingredience";
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
+            richTextBox1.ForeColor = SystemColors.GrayText;
+            richTextBox1.Text = "Recipe instructions";
+            richTextBox2.BackColor = SystemColors.ButtonHighlight;
+            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
+            this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
+       // dataGridView4 design
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.WhiteSmoke;
+            dataGridView4.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.DefaultCellStyle.BackColor = Color.White;
+            dataGridView4.DefaultCellStyle.ForeColor = Color.MidnightBlue;
+        }
+
+        
+        
     }
 }
