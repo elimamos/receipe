@@ -1,0 +1,10 @@
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\bin\Debug\Przepisy.exe.config
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\bin\Debug\Przepisy.exe
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\bin\Debug\Przepisy.pdb
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.csprojResolveAssemblyReference.cache
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.Form1.resources
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.Properties.Resources.resources
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.csproj.GenerateResource.Cache
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.exe
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.pdb
+C:\Users\Elisa\Desktop\Przepisy\Przepisy\obj\Debug\Przepisy.Form2.resources
