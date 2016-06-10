@@ -83,18 +83,23 @@ namespace Przepisy
                 refreshRecommendationList(textBox1.Text);
             }
         }
-        private void button1_Enter(object sender, EventArgs e)
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(textBox1.Text.Length);
-            if (textBox1.Text == "eggs, flour, butter...")
+            if (e.KeyCode == Keys.Enter)
             {
-                refreshRecommendationList();
-            }
-            else
-            {
-                refreshRecommendationList(textBox1.Text);
+                if (textBox1.Text == "")
+                {
+                    refreshRecommendationList();
+                }
+                else
+                    button1.PerformClick();
+                // these last two lines will stop the beep sound
+                e.SuppressKeyPress = true;
+                e.Handled = true;
             }
         }
+      
         
         private void refreshRecommendationList(string ingredience)
         {
@@ -259,6 +264,28 @@ namespace Przepisy
             dataGridView4.DefaultCellStyle.BackColor = Color.White;
             dataGridView4.DefaultCellStyle.ForeColor = Color.MidnightBlue;
         }
+
+        private void textBox1_Enter_1(object sender, EventArgs e)
+        {
+
+            Console.WriteLine(textBox1.Text.Length);
+            if (textBox1.Text == "eggs, flour, butter...")
+            {
+                refreshRecommendationList();
+            }
+            else
+            {
+                refreshRecommendationList(textBox1.Text);
+            };
+        }
+        
+
+	
+
+
+
+
+       
 
         
         
