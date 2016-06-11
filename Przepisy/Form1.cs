@@ -263,6 +263,8 @@ namespace Przepisy
             dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView4.DefaultCellStyle.BackColor = Color.White;
             dataGridView4.DefaultCellStyle.ForeColor = Color.MidnightBlue;
+
+           
         }
 
         private void textBox1_Enter_1(object sender, EventArgs e)
